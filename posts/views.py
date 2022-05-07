@@ -1,6 +1,6 @@
+from django.db.models import F
 from rest_framework import serializers, status
 from rest_framework.decorators import api_view
-from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
@@ -157,4 +157,11 @@ def comment_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(["POST"])
+def upvote_post(request, pk):
+    if request.method == "POST":
+        Post.objects.filter(pk=pk).update(upvotes=F('upvotes') + 1)
         return Response(status=status.HTTP_204_NO_CONTENT)

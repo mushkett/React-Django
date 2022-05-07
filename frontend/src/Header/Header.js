@@ -12,7 +12,7 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <a className="nav-link active fs-4" aria-current="page" href="/posts">Posts</a>
+                            <a className="nav-link active fs-4" aria-current="page" href="/">Posts</a>
                             <a className="nav-link active fs-4" href="/new_post">New post</a>
                         </div>
                     </div>

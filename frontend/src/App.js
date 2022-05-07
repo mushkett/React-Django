@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './Header/Header';
 import Posts from './Posts/Posts';
+import PostForm from "./PostForm/PostForm";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -11,8 +12,8 @@ function App() {
             <div>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/posts" element={<Posts/>}/>
-                        <Route index element={<div>Default Page Content</div>}/>
+                        <Route path="/new_post" element={<PostForm/>}/>
+                        <Route index element={<Posts/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>

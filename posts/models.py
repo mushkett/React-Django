@@ -10,9 +10,6 @@ class Post(models.Model):
     creation_date = models.DateField(auto_now_add=True)
     author_name = models.CharField(max_length=25)
 
-    def upvote_post(self):
-        self.upvotes += 1
-
 
 class Comment(models.Model):
     author_name = models.CharField(max_length=25)

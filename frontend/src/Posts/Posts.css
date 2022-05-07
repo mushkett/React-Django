@@ -1,0 +1,22 @@
+.post {
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 1%;
+
+    right: 100%;
+    width: 20%;
+
+    text-align: left;
+
+    -webkit-box-shadow: 4px 3px 15px 0px rgba(0, 0, 0, 0.57);
+    box-shadow: 4px 3px 15px 0px rgba(0, 0, 0, 0.57);
+
+
+}
+
+.upvotes {
+    display: flex;
+    justify-content: space-between;
+}
+
