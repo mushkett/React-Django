@@ -1,48 +1,42 @@
 import "./Posts.css"
-import React from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-export default class Posts extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: []
-        }
+export default function Posts() {
+    const [posts, setPosts] = useState([]);
+    const url = "http://127.0.0.1:8080/posts/"
+
+    function upvoteAction(id) {
+        axios.post( url + id + "/upvote/").then(() =>
+            axios.get(url)
+                .then(res => {
+                    const posts = res.data;
+                    setPosts(posts)
+                }))
     }
 
-    upvoteAction(id){
-        axios.post("http://127.0.0.1:8000/posts/" + id + "/upvote/").then( () =>
-        axios.get("http://127.0.0.1:8000/posts/")
-            .then(res => {
+    useEffect(() => {
+        axios.get(url)
+            .then((res) => {
                 const posts = res.data;
-                this.setState({posts})
-            }))
-
-    }
-
-    componentDidMount() {
-        axios.get("http://127.0.0.1:8000/posts/")
-            .then(res => {
-                const posts = res.data;
-                this.setState({posts})
+                setPosts(posts)
             })
-    }
-    render() {
-        return (
-                this.state.posts.map((item) => (
-                <div className="post">
-                    <h3> {item.title}</h3>
-                    <p>id: {item.id}</p>
-                    <p>author: {item.author_name}</p>
-                    <p>Creation date: {item.creation_date}</p>
-                    <div className="upvotes">
-                        <p>{item.upvotes}</p>
-                        <button onClick={() => this.upvoteAction(item.id)} className="btn btn-sm btn-primary">Like</button>
-                    </div>
+    }, [])
+
+    return (
+        posts.map((item) => (
+            <div className="post">
+                <a href={"/post/" + item.id + '/details'}> {item.title}</a>
+                <p>id: {item.id}</p>
+                <p>author: {item.author_name}</p>
+                <p>Creation date: {item.creation_date}</p>
+                <div className="upvotes">
+                    <p>{item.upvotes}</p>
+                    <button onClick={() => upvoteAction(item.id)} className="btn btn-sm btn-primary">Like</button>
                 </div>
-            ))
+            </div>
+        ))
 
-        )
+    )
 
-    }
 }

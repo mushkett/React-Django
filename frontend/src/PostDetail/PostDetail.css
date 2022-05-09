@@ -1,0 +1,14 @@
+.postdetail{
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 25px;
+
+    right: 100%;
+    width: 40%;
+}
+.action-buttons{
+    display: flex;
+    justify-content: space-between;
+}
