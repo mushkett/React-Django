@@ -11,7 +11,12 @@ export default class Posts extends React.Component {
     }
 
     upvoteAction(id){
-        axios.post("http://127.0.0.1:8000/posts/" + id + "/upvote/");
+        axios.post("http://127.0.0.1:8000/posts/" + id + "/upvote/").then( () =>
+        axios.get("http://127.0.0.1:8000/posts/")
+            .then(res => {
+                const posts = res.data;
+                this.setState({posts})
+            }))
 
     }
 
