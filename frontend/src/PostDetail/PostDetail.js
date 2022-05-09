@@ -2,23 +2,24 @@ import "./PostDetail.css"
 import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
+import Commentaries from "./Commentaries/Commentaries";
 
 
 export default function PostDetail() {
     const params = useParams();
     const navigate = useNavigate();
-    const url = 'http://127.0.0.1:8080/posts/'
+    const posturl = 'http://127.0.0.1:8080/posts/'
     const [post, setPost] = useState([]);
 
     React.useEffect(() => {
-        axios.get( url + params.id).then((res) => {
+        axios.get(posturl + params.id).then((res) => {
             const post = res.data;
             setPost(post)
         })
     }, [])
 
     function deletePost() {
-        axios.delete(url + params.id + '/',{});
+        axios.delete(posturl + params.id + '/', {});
         navigate('/')
     }
 
@@ -35,6 +36,7 @@ export default function PostDetail() {
                 <a className="btn btn-primary" href={"/post/" + params.id + "/edit"}>Edit</a>
                 <a onClick={deletePost} className="btn btn-danger">Delete</a>
             </div>
+            <Commentaries/>
         </div>
     )
 

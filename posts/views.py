@@ -36,7 +36,7 @@ def api_overview(request):
                 }
             }
         },
-        "Comments": {
+        "Commentaries": {
             'Add': {
                 'URL': '/comments',
                 'Method': 'POST'
