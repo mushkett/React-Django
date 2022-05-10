@@ -5,7 +5,7 @@ import {useParams, useNavigate} from "react-router-dom";
 
 function PostForm() {
     const navigate = useNavigate();
-    const url = "http://127.0.0.1:8000/posts/"
+    const url = "http://127.0.0.1:8080/posts/"
     const params = useParams();
 
     const [data, setData] = useState({
@@ -20,7 +20,7 @@ function PostForm() {
     useEffect(() => {
             if (params.id) {
                 console.log(params.id)
-                axios.get("http://127.0.0.1:8000/posts/" + params.id)
+                axios.get(url + params.id)
                     .then(res => {
                         const post = res.data;
                         setData({
@@ -75,8 +75,8 @@ function PostForm() {
             }).then((res) => {
                 console.log(res)
                 handleClear(e)
-
                 alert("Success!")
+                navigate('/')
             }).catch((error) => {
                 alert(error)
             })
@@ -85,7 +85,7 @@ function PostForm() {
     }
 
     return (<div className="form-div">
-        <form onSubmit={(e) => submit(e)} className="post-form" method="POST">
+        <form onSubmit={(e) => submit(e)} className="post-form">
             <label>Title:</label>
             <input onChange={(e) => handle(e)} id="title" value={data.title} type="text" name="title"/>
 
