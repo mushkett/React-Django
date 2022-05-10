@@ -41,7 +41,7 @@ def api_overview(request):
                 'URL': '/comments',
                 'Method': 'POST'
             },
-            'Comment list': {
+            'Comments list': {
                 'URL': '/comments',
                 'Method': 'GET'
             },
@@ -165,3 +165,7 @@ def upvote_post(request, pk):
     if request.method == "POST":
         Post.objects.filter(pk=pk).update(upvotes=F('upvotes') + 1)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+def reset_upvote():
+    Post.objects.update(upvotes=0)
