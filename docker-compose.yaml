@@ -18,12 +18,9 @@ services:
 
   django:
     restart: always
-    container_name: back
+    image: mushkett/react_django:latest
     command : bash -c "python manage.py migrate &&
                       python manage.py runserver 0.0.0.0:8080"
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
@@ -34,10 +31,7 @@ services:
   frontend:
     restart: always
     command : npm start
-    container_name: front
-    build:
-      context: ./frontend/
-      dockerfile: Dockerfile
+    image: mushkett/react:latest
     ports:
       - "3000:3000"
     stdin_open: true
