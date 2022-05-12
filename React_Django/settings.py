@@ -80,8 +80,12 @@ WSGI_APPLICATION = "React_Django.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "dav9fgm4nslook",
+        "USER": "tiooyxbjoeppca",
+        "PASSWORD": "63786f7807ddfbdb0f3286f7c2c479d44915650d0a57b3fce78f3b6316e14b36",
+        "HOST": "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
+        "PORT": "5432"
     }
 }
 
