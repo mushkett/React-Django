@@ -19,13 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-+ndi#v6$k@6_m00f!ko&1^q313h=b9&lh&"\
+SECRET_KEY = "django-insecure-+ndi#v6$k@6_m00f!ko&1^q313h=b9&lh&" \
              "b)syl+n#lhf&!^uq"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    '*'
+]
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
 ]
@@ -80,12 +83,8 @@ WSGI_APPLICATION = "React_Django.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "dav9fgm4nslook",
-        "USER": "tiooyxbjoeppca",
-        "PASSWORD": "63786f7807ddfbdb0f3286f7c2c479d44915650d0a57b3fce78f3b6316e14b36",
-        "HOST": "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
-        "PORT": "5432"
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -95,7 +94,7 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation."
-        "UserAttributeSimilarityValidator",
+                "UserAttributeSimilarityValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation."
